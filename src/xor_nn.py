@@ -15,7 +15,6 @@ class NeuralNetXor():
     train_Y = None
     learning_rate = None
     max_epochs = None
-    error_threshold = None
     error_history = []
     h1 = None # Keeping this to reduce calculations during backprop
     y_pred = None # Keeping this to reduce caluclations during backprop
@@ -25,12 +24,11 @@ class NeuralNetXor():
     train_Y: (n_sample, )
     '''
 
-    def __init__(self, train_X, train_Y, learning_rate, error_threshold, max_epochs):
+    def __init__(self, train_X, train_Y, learning_rate, max_epochs):
         self.train_X = train_X
         self.train_Y = train_Y
         self.learning_rate = learning_rate
         self.max_epochs = max_epochs
-        self.error_threshold = error_threshold
 
     def train(self):
         for i in range(self.max_epochs):
@@ -101,7 +99,7 @@ if __name__ == '__main__':
                         [1, 0],
                         [1, 1]])
     train_Y = np.array([0, 1, 1, 0])
-    nn = NeuralNetXor(train_X.T, train_Y, learning_rate=0.1, error_threshold=0.1, max_epochs=100000)
+    nn = NeuralNetXor(train_X.T, train_Y, learning_rate=0.1, max_epochs=100000)
     nn.train()
     for i in range(4):
         print(nn.predict(train_X[i, :]))
